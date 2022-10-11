@@ -1,17 +1,10 @@
-# [Flask User Authentication](https://blog.appseed.us/flask-user-authentication-free-sample/)
+# [Lone Star Learning System Site]
 
 Open-source Flask project that implements a simple authentication system using `Flask-Login` library - Features:
 
 - Up-to-date [dependencies](./requirements.txt): **Flask 2.0.1**
 - Authentication layer: `Flask-Login`
 - UI: Bootstrap5 via `CDN`
-- Support via **Github** (issues tracker) and [Discord](https://discord.gg/fZC6hup).
-
-<br />
-
-![Flask User Authentication - Free sample provided by AppSeed.](https://user-images.githubusercontent.com/51070104/134959525-3ad0c71c-27e4-45f7-b7b9-53b76f3884bf.png)
-
-<br />
 
 ## Build from sources
 
