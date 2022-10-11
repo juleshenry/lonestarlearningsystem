@@ -115,15 +115,3 @@ The project has a super simple structure, represented as bellow:
    |
    |-- ************************************************************************
 ```
-
-<br />
-
-## Resources
-
-- Free [Admin Dashboards](https://appseed.us/admin-dashboards/open-source) - index provided by AppSeed
-- [Flask Social Login](https://blog.appseed.us/flask-social-login-with-github/) - blog article (includes a free sample)
-
-<br />
-
----
-[Flask User Authentication](https://blog.appseed.us/flask-user-authentication-free-sample/) - Free sample provided by **AppSeed [App Generator](https://appseed.us/app-generator)**.
