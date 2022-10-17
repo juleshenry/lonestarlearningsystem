@@ -40,15 +40,15 @@
                             {% if msg %}
                                 {{ msg | safe }}
                             {% else %}
-                                Sign up for tutoring
+                                Student Portal
                             {% endif %}                                  
                         </p>
 
                         <br />
 
                         <div class="form-floating mb-3">
-                            {{ form.username(class="form-control") }}
-                            <label for="floatingInput">Username</label>
+                            {{ form.name(class="form-control") }}
+                            <label for="floatingInput">Name</label>
                         </div>
 
                         <div class="form-floating mb-3">

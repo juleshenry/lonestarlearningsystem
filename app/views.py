@@ -31,7 +31,6 @@ def logout():
 # Register a new user
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    
     # declare the Registration Form
     form = RegisterForm(request.form)
 
@@ -39,34 +38,27 @@ def register():
     success = False
 
     if request.method == 'GET': 
-
         return render_template( 'register.html', form=form, msg=msg )
 
     # check if both http method is POST and form is valid on submit
     if form.validate_on_submit():
 
         # assign form data to variables
-        username = request.form.get('username', '', type=str)
+        name = request.form.get('name', '', type=str)
         password = request.form.get('password', '', type=str) 
         email    = request.form.get('email'   , '', type=str) 
 
         # filter User out of database through username
-        user = Users.query.filter_by(user=username).first()
-
-        # filter User out of database through username
         user_by_email = Users.query.filter_by(email=email).first()
 
-        if user or user_by_email:
-            msg = 'Error: User exists!'
-        
+        if user_by_email:
+            msg = 'Error: Already registered!'
         else:         
             pw_hash = bc.generate_password_hash(password)
-            user = Users(username, email, pw_hash)
+            user = Users(name, email, pw_hash)
             user.save()
-
             msg     = 'User created, please <a href="' + url_for('login') + '">login</a>'     
             success = True
-
     else:
         msg = 'Input error'     
 
@@ -86,14 +78,12 @@ def login():
     if form.validate_on_submit():
 
         # assign form data to variables
-        username = request.form.get('username', '', type=str)
+        email = request.form.get('email', '', type=str)
         password = request.form.get('password', '', type=str) 
 
         # filter User out of database through username
-        user = Users.query.filter_by(user=username).first()
-
+        user = Users.query.filter_by(email=email).first()
         if user:
-            
             if bc.check_password_hash(user.password, password):
                 login_user(user)
                 return redirect(url_for('index'))
