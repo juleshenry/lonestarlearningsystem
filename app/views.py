@@ -4,70 +4,74 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # Python modules
-import os, logging 
+import os, logging
 
 # Flask modules
-from flask               import render_template, request, url_for, redirect, send_from_directory
-from flask_login         import login_user, logout_user, current_user, login_required
+from flask import render_template, request, url_for, redirect, send_from_directory
+from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.exceptions import HTTPException, NotFound, abort
-from jinja2              import TemplateNotFound
+from jinja2 import TemplateNotFound
 
 # App modules
-from app        import app, lm, db, bc
+from app import app, lm, db, bc
 from app.models import Users
-from app.forms  import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm
 
 # provide login manager with load_user callback
 @lm.user_loader
 def load_user(user_id):
     return Users.query.get(int(user_id))
 
+
 # Logout user
-@app.route('/logout')
+@app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for("index"))
+
 
 # Register a new user
-@app.route('/register', methods=['GET', 'POST'])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     # declare the Registration Form
     form = RegisterForm(request.form)
 
-    msg     = None
+    msg = None
     success = False
 
-    if request.method == 'GET': 
-        return render_template( 'register.html', form=form, msg=msg )
+    if request.method == "GET":
+        return render_template("register.html", form=form, msg=msg)
 
     # check if both http method is POST and form is valid on submit
     if form.validate_on_submit():
 
         # assign form data to variables
-        name = request.form.get('name', '', type=str)
-        password = request.form.get('password', '', type=str) 
-        email    = request.form.get('email'   , '', type=str) 
+        first_name = request.form.get("first_name", "", type=str)
+        last_name = request.form.get("last_name", "", type=str)
+        password = request.form.get("password", "", type=str)
+        email = request.form.get("email", "", type=str)
 
         # filter User out of database through username
         user_by_email = Users.query.filter_by(email=email).first()
 
         if user_by_email:
-            msg = 'Error: Already registered!'
-        else:         
+            msg = "Error: Already registered!"
+        else:
             pw_hash = bc.generate_password_hash(password)
-            user = Users(name, email, pw_hash)
+            user = Users(first_name, last_name, email, pw_hash)
             user.save()
-            msg     = 'User created, please <a href="' + url_for('login') + '">login</a>'     
+            msg = 'User created, please <a href="' + url_for("login") + '">login</a>'
             success = True
     else:
-        msg = 'Input error'     
+        msg = "Input error"
 
-    return render_template( 'register.html', form=form, msg=msg, success=success )
+    return render_template("register.html", form=form, msg=msg, success=success)
+
 
 # Authenticate user
-@app.route('/login', methods=['GET', 'POST'])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    
+
     # Declare the login form
     form = LoginForm(request.form)
 
@@ -78,41 +82,43 @@ def login():
     if form.validate_on_submit():
 
         # assign form data to variables
-        email = request.form.get('email', '', type=str)
-        password = request.form.get('password', '', type=str) 
+        email = request.form.get("email", "", type=str)
+        password = request.form.get("password", "", type=str)
 
         # filter User out of database through username
         user = Users.query.filter_by(email=email).first()
         if user:
             if bc.check_password_hash(user.password, password):
                 login_user(user)
-                return redirect(url_for('index'))
+                return redirect(url_for("index"))
             else:
                 msg = "Wrong password. Please try again."
         else:
             msg = "Unknown user"
 
-    return render_template( 'login.html', form=form, msg=msg )
+    return render_template("login.html", form=form, msg=msg)
+
 
 # App main route + generic routing
-@app.route('/', defaults={'path': 'index'})
-@app.route('/<path>')
+@app.route("/", defaults={"path": "index"})
+@app.route("/<path>")
 def index(path):
 
-    #if not current_user.is_authenticated:
+    # if not current_user.is_authenticated:
     #    return redirect(url_for('login'))
 
     try:
 
-        return render_template( 'index.html' )
-    
+        return render_template("index.html")
+
     except TemplateNotFound:
-        return render_template('page-404.html'), 404
-    
+        return render_template("page-404.html"), 404
+
     except:
-        return render_template('page-500.html'), 500
+        return render_template("page-500.html"), 500
+
 
 # Return sitemap
-@app.route('/sitemap.xml')
+@app.route("/sitemap.xml")
 def sitemap():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')
+    return send_from_directory(os.path.join(app.root_path, "static"), "sitemap.xml")

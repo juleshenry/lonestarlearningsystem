@@ -11,6 +11,7 @@ env/
 env__/
 .vscode/symbols.json
 app/db.sqlite3
+.idea
 
 app/static/assets/node_modules
 app/static/assets/yarn.lock
