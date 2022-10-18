@@ -24,17 +24,14 @@
                         Select a date:
                     </p>
                 </div>
-                <div class="col-lg-6 mx-auto">
-
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <div class="btn-group-vertical">
-                            <input type="radio" class="btn-check" name="btnradio" id="today-btn" autocomplete="off" checked>
-                              <label class="btn btn-outline-primary" for="btnradio1">Today</label>
-
-                              <input type="radio" class="btn-check" name="btnradio" id="tomorrow-btn" autocomplete="off">
-                              <label class="btn btn-outline-primary" for="btnradio2">Tomorrow</label>
-                        </div>
-
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Today
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> Tomorrow
+                      </label>
                     </div>
                 </div>
                 <div class="col-lg-6 mx-auto">
@@ -67,7 +64,7 @@
                         }
                         // TODO: disable time traveling phone calls
                         option = document.createElement('option');
-                        option.value = option.text = i.toString() + ":" + j;
+                        option.value = option.text = i.toString() + ":" + j + " PM";
                         select.add(option);
                     });
                 }
