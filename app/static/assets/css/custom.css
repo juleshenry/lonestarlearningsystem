@@ -12,6 +12,17 @@
     }
 }
 
+.bd-example {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+}
+
+select { width: 400px; text-align-last:center; }
+
 main>.container {
     padding: 60px 15px 0;
 }
