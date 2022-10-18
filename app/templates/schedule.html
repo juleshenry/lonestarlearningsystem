@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Julian Henry">
+<title>LSLS | Schedule</title>
+<script type="text/javascript">
+function initDropdownList( id, min, max ) {
+    var select, i, option;
+    select = document.getElementById( id );
+    for ( i = min; i <= max; i += 1 ) {
+        option = document.createElement( 'option' );
+        option.value = option.text = i;
+        select.add( option );
+    }
+}
+initDropdownList( 'dee', 12, 100 );
+console.log('its up');
+</script>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/assets/css/custom.css">
+
+</head>
+<body>
+    {% include 'navigation.html' %}
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/static/assets/img/ls2logo.svg" alt="" width="100" height="100">
+            <h1 class="display-5 fw-bold">Lone Star Learning System</h1>
+            <p class="lead mb-4">
+                        What is the best time to reach you?
+                    </p>
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <select id="dee" class="form-select form-select-lg" style="width:auto;">
+                       </select>
+                    <div class="btn-group-vertical">
+                        <a type="button" class="btn btn-outline-secondary btn-lg px-4">Logout</a>
+                    <a type="button" class="btn btn-outline-secondary btn-lg px-4">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

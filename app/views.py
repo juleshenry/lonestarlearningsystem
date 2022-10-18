@@ -98,6 +98,10 @@ def login():
 
     return render_template("login.html", form=form, msg=msg)
 
+# Authenticate user
+@app.route("/schedule", methods=["GET", "POST"])
+def schedule():
+    return render_template("schedule.html")
 
 # App main route + generic routing
 @app.route("/", defaults={"path": "index"})

@@ -12,17 +12,19 @@ class Users(db.Model, UserMixin):
     __tablename__ = "Users"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True)
+    first_name = db.Column(db.String(64))
+    last_name = db.Column(db.String(64))
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(500))
 
-    def __init__(self, name, email, password):
-        self.name = name
+    def __init__(self, first_name, last_name, email, password):
+        self.first_name = first_name
+        self.last_name = last_name
         self.password = password
         self.email = email
 
     def __repr__(self):
-        return str(self.id) + " - " + str(self.name)
+        return str(self.id) + " - " + str(self.first_name) +" - " + str(self.last_name)
 
     def save(self):
 
