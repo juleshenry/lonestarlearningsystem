@@ -50,7 +50,8 @@ def register():
         last_name = request.form.get("last_name", "", type=str)
         password = request.form.get("password", "", type=str)
         email = request.form.get("email", "", type=str)
-
+        phone_number = request.form.get("phone_number", type=str)
+        
         # filter User out of database through username
         user_by_email = Users.query.filter_by(email=email).first()
 
@@ -58,7 +59,7 @@ def register():
             msg = "Error: Already registered!"
         else:
             pw_hash = bc.generate_password_hash(password)
-            user = Users(first_name, last_name, email, pw_hash)
+            user = Users(first_name, last_name, email, phone_number, pw_hash)
             user.save()
             msg = 'User created, please <a href="' + url_for("login") + '">login</a>'
             success = True

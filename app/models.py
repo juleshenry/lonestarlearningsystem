@@ -15,14 +15,15 @@ class Users(db.Model, UserMixin):
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64))
     email = db.Column(db.String(120), unique=True)
-    # phone_number = db.Column(db.)
+    phone_number = db.Column(db.String(20))
     password = db.Column(db.String(500))
 
-    def __init__(self, first_name, last_name, email, password):
+    def __init__(self, first_name, last_name, email, phone_number, password):
         self.first_name = first_name
         self.last_name = last_name
         self.password = password
         self.email = email
+        self.phone_number = phone_number
 
     def __repr__(self):
         return str(self.id) + " - " + str(self.first_name) +" - " + str(self.last_name)
