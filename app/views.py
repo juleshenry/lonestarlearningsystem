@@ -51,7 +51,7 @@ def register():
         password = request.form.get("password", "", type=str)
         email = request.form.get("email", "", type=str)
         phone_number = request.form.get("phone_number", type=str)
-        
+
         # filter User out of database through username
         user_by_email = Users.query.filter_by(email=email).first()
 
@@ -99,10 +99,12 @@ def login():
 
     return render_template("login.html", form=form, msg=msg)
 
+
 # Authenticate user
 @app.route("/schedule", methods=["GET", "POST"])
 def schedule():
     return render_template("schedule.html")
+
 
 # App main route + generic routing
 @app.route("/", defaults={"path": "index"})

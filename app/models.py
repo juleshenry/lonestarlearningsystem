@@ -26,7 +26,7 @@ class Users(db.Model, UserMixin):
         self.phone_number = phone_number
 
     def __repr__(self):
-        return str(self.id) + " - " + str(self.first_name) +" - " + str(self.last_name)
+        return str(self.id) + " - " + str(self.first_name) + " - " + str(self.last_name)
 
     def save(self):
 

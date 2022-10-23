@@ -26,3 +26,8 @@ select { width: 400px; text-align-last:center; }
 main>.container {
     padding: 60px 15px 0;
 }
+
+.radio [type="radio"]:checked+label:after {
+  border-color: #00C851;
+  background-color: #00C851;
+}
