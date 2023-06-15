@@ -1,6 +1,10 @@
 # [Lone Star Learning System Site]
 
-Open-source Flask project that implements a simple authentication system using `Flask-Login` library - Features:
+Generic auth system
+
+Open-source Flask project that implements a simple authentication system using `Flask-Login` library 
+
+- Features:
 
 - Up-to-date [dependencies](./requirements.txt): **Flask 2.0.1**
 - Authentication layer: `Flask-Login`
